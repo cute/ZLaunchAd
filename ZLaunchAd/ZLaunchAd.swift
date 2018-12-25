@@ -11,8 +11,8 @@
 import UIKit
 
 @objc public class ZLaunchAd: NSObject {
-    
-    
+
+
     /// 创建广告view --- 进入前台时显示
     ///
     /// - Parameters:
@@ -38,11 +38,13 @@ import UIKit
         }
         launchAdView.adRequest = adNetRequest
         launchAdView.waitTime = waitTime
-        UIApplication.shared.keyWindow?.addSubview(launchAdView)
+        if let keyWindow = UIApplication.shared.keyWindow {
+            keyWindow.addSubview(launchAdView)
+        }
         return launchAdView
     }
-    
-    
+
+
     /// 创建广告view --- 自定义通知控制出现
     ///
     /// - Parameters:
@@ -63,13 +65,13 @@ import UIKit
         UIApplication.shared.keyWindow?.addSubview(launchAdView)
         return launchAdView
     }
-    
+
     // MARK: - 清除缓存
     /// 清除全部缓存
     @objc public class func clearDiskCache() {
         ZLaunchAdClearDiskCache()
     }
-    
+
     /// 清除指定url缓存
     ///
     /// - Parameter urlArray: url数组
